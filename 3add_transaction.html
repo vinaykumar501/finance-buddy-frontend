@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Add Transaction</title>
+  <link rel="stylesheet" href="add_transaction.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>💰 Add Transaction</h1>
+    <form id="addTransactionForm">
+      <label>Person Serial Number</label>
+      <input type="number" id="serialNumber" required />
+
+      <label>Amount</label>
+      <input type="number" id="amount" required />
+
+      <label>Type</label>
+      <select id="type" required>
+        <option value="">-- Select Type --</option>
+        <option value="give">Give</option>
+        <option value="receive">Receive</option>
+      </select>
+
+      <label>Reason</label>
+      <input type="text" id="reason" required />
+
+      <label>Date</label>
+      <input type="date" id="date" required />
+
+      <button type="submit">Add Transaction</button>
+    </form>
+  </div>
+
+
+    <p class="action-links">
+  <a href="1home.html">⬅️ Back to Home</a>
+</p>
+
+ <script src="add_transaction.js">
+   
+  </script>
+</body>
+</html>

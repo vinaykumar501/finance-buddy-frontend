@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Finance Buddy</title>
+    <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta name="description" content="This is a financial summary web page.">
+    <meta name="author" content="Vinay Kumar">
+    <link rel="stylesheet" href="home.css">
+  </head>
+  <body>
+    <div class="header">
+      <div class="title">
+        <p>Finance Buddy</p>
+      </div>
+      <div>
+        <ul class="home_ul">
+  <li><a href="1home.html">🏠 Home</a></li>
+  <li><a href="2add_person.html">👤 Add Person</a></li>
+  <li><a href="3add_transaction.html">📋 Add Transaction</a></li>
+  <li><a href="4view_people.html">🔎 View People</a></li>
+</ul>
+      </div>
+    </div>
+    <div class="section1">
+    <div class="sub_heading1">
+      <p>📊Financial Summary</p>
+      <div class="dropdown-filter">
+  <label for="filterSelect">📅 Filter by Period</label>
+  <select id="filterSelect">
+    <option value="all">All</option>
+    <option value="7days">Last 7 Days</option>
+    <option value="thisMonth">This Month</option>
+    <option value="lastMonth">Last Month</option>
+  </select>
+</div>
+
+
+    </div>
+    <div class="cards">
+      <div class="card">
+            <p>💰Total Borrowed</p>
+            <p id="totalBorrowed">₹0</p>
+            </div>
+            <div class="card">
+              <p>💸Total Repay</p>
+              <p id="totalRepaid">₹0</p>
+            </div>
+            <div class="card">
+              <p>📈Total Balance</p>
+              <p id="totalBalance">₹0</p>
+            </div>
+    </div>
+    </div>
+    <div class="section2">
+      <div class="sub_heading2">
+      <p>🕒Recent Transactions</p>
+      <p><a href="7all_transactions.html">🔍 View All</a></p>
+    </div>
+    <div>
+      <table class="table_">
+      <thead>
+      <tr>
+        <th>Date</th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Amount</th>
+        <th>Info</th>
+      </tr>
+    </thead>
+        <tbody id="recentTransactions">
+            <!-- JS will inject last 5 transactions here -->
+        </tbody>
+
+     </table>
+    </div>
+
+      <div class="sub_heading3">
+  <p>💼 Top 3 Borrowers</p>
+</div>
+
+<div class="cards" id="topBorrowerCards"></div>
+
+
+
+
+
+    <div class="sub_heading4">
+        <p>📝 Notes or Reminders</p>
+        </div>
+    <div class="section4">
+        <div class="info">
+           <textarea placeholder="Enter your note here..." id="notesBox"></textarea>
+        </div>
+        <div class="button">
+           <button class="btn add" onclick="saveNote()">ADD</button>
+           <button class="btn edit" onclick="editNote()">EDIT</button>
+           <button class="btn delete" onclick="deleteNote()">DELETE</button>
+        </div>
+    </div>
+
+    <footer class="footer">
+  Designed & Built by <strong>Vinay Kumar</strong> · © 2025 · 📧 <a href="mailto:badithimanivinay@gmail.com">badithimanivinay@gmail.com</a>
+</footer>
+
+<script src="home.js">
+
+</script>
+
+
+    
+  </body>
+</html>

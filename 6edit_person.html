@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Edit Person</title>
+  <link rel="stylesheet" href="add_person.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Edit Person</h1>
+    <form id="editPersonForm">
+      <label>Serial Number</label>
+      <input type="text" id="serial" required />
+
+      <label>Name</label>
+      <input type="text" id="name" required />
+
+      <label>Phone</label>
+      <input type="tel" id="phone" required />
+
+      <label>Email</label>
+      <input type="email" id="email" />
+
+      <label>Address</label>
+      <textarea id="address" rows="3" placeholder="Enter address..."></textarea>
+
+      <button type="submit">Update Person</button>
+    </form>
+  </div>
+
+  <p class="action-links" style="text-align:center; margin-top:20px;">
+    <a href="1home.html">⬅️ Back to Home</a>
+  </p>
+
+  <script src="edit_person.js">
+    
+  </script>
+</body>
+</html>

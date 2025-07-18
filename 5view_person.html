@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>View Person</title>
+  <link rel="stylesheet" href="view_person.css" />
+
+</head>
+<body>
+  <div class="card" id="personDetails">
+    <h2>👤 Person Details</h2>
+    <p><strong>Name:</strong> <span id="name"></span></p>
+    <p><strong>Phone:</strong> <span id="phone"></span></p>
+    <p><strong>Email:</strong> <span id="email"></span></p>
+    <p><strong>Address:</strong> <span id="address"></span></p>
+    <p><strong>Balance:</strong> ₹<span id="balance"></span></p>
+  </div>
+
+  <div class="card">
+    <h2>📜 Transaction History</h2>
+    <table id="transactionTable">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Type</th>
+          <th>Amount</th>
+          <th>Reason</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Transactions will appear here -->
+      </tbody>
+    </table>
+  </div>
+
+<p class="action-links">
+  <a href="#" id="editLink">✏️ Edit Person</a>
+  <a href="1home.html">⬅️ Back to Home</a>
+  <a href="#" id="deletePerson" style="background-color: #c62828;">🗑️ Delete Person</a>
+</p>
+
+
+
+
+
+</body>
+</html>

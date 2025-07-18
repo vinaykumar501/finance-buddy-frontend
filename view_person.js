@@ -11,7 +11,7 @@
   // ✅ Load person and their transactions from backend
   async function loadPersonDetails() {
     try {
-      const BASE_URL = "http://localhost:5000"; // Replace with your deployed URL later
+      const BASE_URL = "https://finance-buddy-backend.onrender.com/api/person"; // Replace with your deployed URL later
 
       // Fetch all people and transactions
       const [peopleRes, txnRes] = await Promise.all([
@@ -70,7 +70,7 @@
   document.getElementById("deletePerson").addEventListener("click", async function () {
     if (confirm("Are you sure you want to delete this person and all their transactions?")) {
       try {
-        const BASE_URL = "http://localhost:5000"; // Replace when deployed
+        const BASE_URL = "https://finance-buddy-backend.onrender.com/api/person"; // Replace when deployed
 
         // First: delete all transactions for this person (optional, depends on your backend)
         await fetch(`${BASE_URL}/api/transaction/person/${personId}`, { method: "DELETE" });

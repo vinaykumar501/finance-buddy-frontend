@@ -16,7 +16,7 @@ form.addEventListener("submit", async function (e) {
 
   // ✅ Send to backend using fetch
   try {
-    const response = await fetch("http://localhost:5000/api/transaction", {
+    const response = await fetch("https://finance-buddy-backend.onrender.com/api/person", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

@@ -4,29 +4,41 @@ const tbody = document.getElementById("allTransactionTable");
 let transactions = [];
 let people = [];
 
-// ✅ Load transactions and people from backend
 async function loadData() {
   try {
-    const BASE_URL = "https://finance-buddy-backend.onrender.com"; // Change when deployed
+    const BASE_URL = "https://finance-buddy-backend.onrender.com";
+
+    console.log("📡 Fetching from:", BASE_URL);
 
     const [txnRes, peopleRes] = await Promise.all([
       fetch(`${BASE_URL}/api/transaction`),
       fetch(`${BASE_URL}/api/person`)
     ]);
 
+    if (!txnRes.ok || !peopleRes.ok) {
+      throw new Error(`Status: ${txnRes.status}, ${peopleRes.status}`);
+    }
+
     transactions = await txnRes.json();
     people = await peopleRes.json();
 
-    renderTable(); // Show data on screen
+    console.log("✅ Transactions loaded:", transactions);
+    console.log("✅ People loaded:", people);
+
+    renderTable();
   } catch (err) {
-    console.error("❌ Error loading transactions or people:", err);
-    tbody.innerHTML = `<tr><td colspan="6">Failed to load data.</td></tr>`;
+    console.error("❌ Error loading data:", err);
+    tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;">❌ Failed to load data. Check console.</td></tr>`;
   }
 }
 
-// ✅ Render transaction table
 function renderTable() {
-  tbody.innerHTML = ""; // Clear old data
+  tbody.innerHTML = "";
+
+  if (transactions.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;">No transactions found.</td></tr>`;
+    return;
+  }
 
   transactions.forEach((txn) => {
     const person = people.find(p => p.id == txn.personId);
@@ -48,11 +60,10 @@ function renderTable() {
   });
 }
 
-// ✅ Delete transaction using backend API
 async function deleteTxn(id) {
   if (confirm("Are you sure you want to delete this transaction?")) {
     try {
-      const BASE_URL = "https://finance-buddy-backend.onrender.com"; // Change when deployed
+      const BASE_URL = "https://finance-buddy-backend.onrender.com";
       const res = await fetch(`${BASE_URL}/api/transaction/${id}`, {
         method: "DELETE"
       });
@@ -62,7 +73,6 @@ async function deleteTxn(id) {
         return;
       }
 
-      // Remove from list and refresh UI
       transactions = transactions.filter(t => t._id !== id);
       renderTable();
       alert("✅ Transaction deleted!");
@@ -73,5 +83,5 @@ async function deleteTxn(id) {
   }
 }
 
-// ✅ Load everything on page load
-loadData();
+// ✅ Call when page is ready
+document.addEventListener("DOMContentLoaded", loadData);

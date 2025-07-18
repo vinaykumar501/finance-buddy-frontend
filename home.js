@@ -14,11 +14,10 @@ const notesBox = document.getElementById("notesBox");
 const savedNote = localStorage.getItem("homeNote");
 if (savedNote) notesBox.value = savedNote;
 
-// ✅ Load data from backend (MongoDB via Express)
+// ✅ Load data from backend (MongoDB via Express API)
 async function loadData() {
   try {
-    // 👉 Change this if you deploy your backend
-    const BASE_URL = "http://localhost:5000";
+    const BASE_URL = "https://finance-buddy-backend.onrender.com";
 
     const [txnRes, peopleRes] = await Promise.all([
       fetch(`${BASE_URL}/api/transaction`),
@@ -145,7 +144,7 @@ function updateDashboard(data) {
   });
 }
 
-// ✅ Notes Feature (keep using localStorage)
+// ✅ Notes Feature (local-only)
 function saveNote() {
   const note = notesBox.value.trim();
   if (note) {

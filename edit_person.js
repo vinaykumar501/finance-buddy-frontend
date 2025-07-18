@@ -17,7 +17,7 @@ const form = document.getElementById("editPersonForm");
 // ✅ Load person data from backend
 async function loadPerson() {
   try {
-    const BASE_URL = "http://localhost:5000"; // Change to your deployed backend URL when ready
+    const BASE_URL = "https://finance-buddy-backend.onrender.com/api/person"; // Change to your deployed backend URL when ready
 
     const res = await fetch(`${BASE_URL}/api/person`);
     const people = await res.json();
@@ -50,7 +50,7 @@ form.addEventListener("submit", async function (e) {
   const newId = serialField.value.trim();
 
   try {
-    const BASE_URL = "http://localhost:5000";
+    const BASE_URL = "https://finance-buddy-backend.onrender.com/api/person";
 
     // Fetch all people to check for duplicate ID
     const res = await fetch(`${BASE_URL}/api/person`);

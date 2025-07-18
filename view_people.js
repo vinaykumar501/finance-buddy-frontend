@@ -4,7 +4,7 @@ const tbody = document.getElementById("peopleTable"); // Table body to display p
 async function loadPeople() {
   try {
     // 👉 Change this to your deployed backend URL later
-    const res = await fetch("http://localhost:5000/api/person");
+    const res = await fetch("https://finance-buddy-backend.onrender.com/api/person");
 
     if (!res.ok) throw new Error("Failed to fetch people");
 

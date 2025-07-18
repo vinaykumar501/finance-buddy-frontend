@@ -1,16 +1,21 @@
-const tbody = document.getElementById("peopleTable"); // Table body to display people
+// ✅ Get table body element where people will be listed
+const tbody = document.getElementById("peopleTable");
 
-// ✅ Load people from MongoDB via backend API
+// ✅ Function to load people from backend and populate the table
 async function loadPeople() {
   try {
-    // 👉 Change this to your deployed backend URL later
     const res = await fetch("https://finance-buddy-backend.onrender.com/api/person");
 
-    if (!res.ok) throw new Error("Failed to fetch people");
+    if (!res.ok) throw new Error("❌ Failed to fetch people from backend");
 
-    const people = await res.json(); // Get array of people
+    const people = await res.json(); // Get list of people from backend
 
-    // Loop through people and create rows
+    if (people.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="4">No people found.</td></tr>`;
+      return;
+    }
+
+    // ✅ Populate each row with person data
     people.forEach(p => {
       const row = document.createElement("tr");
       row.innerHTML = `
@@ -23,11 +28,12 @@ async function loadPeople() {
       `;
       tbody.appendChild(row);
     });
+
   } catch (err) {
-    console.error("❌ Error loading people:", err);
-    tbody.innerHTML = `<tr><td colspan="4">Failed to load people.</td></tr>`;
+    console.error(err);
+    tbody.innerHTML = `<tr><td colspan="4">❌ Error loading people from server.</td></tr>`;
   }
 }
 
-// ✅ Call it on page load
+// ✅ Automatically run on page load
 loadPeople();

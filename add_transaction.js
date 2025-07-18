@@ -14,6 +14,9 @@ form.addEventListener("submit", async function (e) {
     date: document.getElementById("date").value
   };
 
+  // ✅ Debug print to console
+  console.log("Sending transaction to backend:", transaction);
+
   // ✅ Send to backend using fetch
   try {
     const response = await fetch("https://finance-buddy-backend.onrender.com/api/transaction", {

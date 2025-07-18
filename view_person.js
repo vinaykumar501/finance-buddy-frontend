@@ -84,7 +84,7 @@
         }
 
         alert("✅ Person and their transactions deleted successfully.");
-        window.location.href = "1home.html";
+        window.location.href = "index.html";
 
       } catch (err) {
         console.error("❌ Deletion error:", err);

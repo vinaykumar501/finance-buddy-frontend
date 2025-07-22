@@ -1,12 +1,10 @@
-// ✅ Get query parameter from URL (e.g., ?id=123)
 function getQueryParam(key) {
   const urlParams = new URLSearchParams(window.location.search);
   return urlParams.get(key);
 }
 
-const oldId = getQueryParam("id"); // The original serial number from URL
+const oldId = getQueryParam("id"); 
 
-// ✅ Form fields
 const serialField = document.getElementById("serial");
 const name = document.getElementById("name");
 const phone = document.getElementById("phone");
@@ -14,10 +12,9 @@ const email = document.getElementById("email");
 const address = document.getElementById("address");
 const form = document.getElementById("editPersonForm");
 
-// ✅ Load person data from backend
 async function loadPerson() {
   try {
-    const BASE_URL = "https://finance-buddy-backend.onrender.com"; // Change to your deployed backend URL when ready
+    const BASE_URL = "https://finance-buddy-backend.onrender.com"; 
 
     const res = await fetch(`${BASE_URL}/api/person`);
     const people = await res.json();
@@ -28,7 +25,6 @@ async function loadPerson() {
       alert("❌ Person not found!");
       window.location.href = "4view_people.html";
     } else {
-      // Pre-fill form fields
       serialField.value = person.id;
       name.value = person.name;
       phone.value = person.phone;
@@ -43,7 +39,6 @@ async function loadPerson() {
 
 loadPerson();
 
-// ✅ Handle form submission
 form.addEventListener("submit", async function (e) {
   e.preventDefault();
 
@@ -52,17 +47,14 @@ form.addEventListener("submit", async function (e) {
   try {
     const BASE_URL = "https://finance-buddy-backend.onrender.com";
 
-    // Fetch all people to check for duplicate ID
     const res = await fetch(`${BASE_URL}/api/person`);
     const people = await res.json();
 
-    // If user changed ID, check if it already exists
     if (newId !== oldId && people.some(p => p.id === newId)) {
       alert("❌ Serial number already exists!");
       return;
     }
 
-    // ✅ Send PUT request to update person info
     const updatedPerson = {
       id: newId,
       name: name.value.trim(),

@@ -1,16 +1,11 @@
-// ✅ Get form and input field references
 const form = document.getElementById("addPersonForm");
 const serialField = document.getElementById("serial");
 const name = document.getElementById("name");
 const phone = document.getElementById("phone");
 const email = document.getElementById("email");
 const address = document.getElementById("address");
-
-// ✅ Add submit event listener to the form
 form.addEventListener("submit", async function (e) {
-  e.preventDefault(); // Prevent default form submission
-
-  // ✅ Create person object from form input
+  e.preventDefault(); 
   const person = {
     id: serialField.value.trim(),
     name: name.value.trim(),
@@ -18,19 +13,13 @@ form.addEventListener("submit", async function (e) {
     email: email.value.trim(),
     address: address.value.trim()
   };
-
-  // ✅ Send data to backend using fetch
   try {
-    // Change this to your deployed backend URL when ready
-   const response = await fetch("https://finance-buddy-backend.onrender.com/api/person", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify(person)
-});
-
-
+   const response = await fetch("https://finance-buddy-backend.onrender.com/api/person", 
+          {
+           method: "POST",
+           headers: { "Content-Type": "application/json"},
+           body: JSON.stringify(person)
+         });
     if (!response.ok) {
       if (response.status === 400) {
         const err = await response.json();

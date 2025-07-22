@@ -1,11 +1,6 @@
-// ✅ Get the transaction form element
 const form = document.getElementById("addTransactionForm");
-
-// ✅ Handle form submission
 form.addEventListener("submit", async function (e) {
-  e.preventDefault(); // Prevent page reload
-
-  // ✅ Create transaction object using form input values
+  e.preventDefault(); 
   const transaction = {
     personId: document.getElementById("serialNumber").value.trim(),
     amount: parseFloat(document.getElementById("amount").value),
@@ -14,16 +9,13 @@ form.addEventListener("submit", async function (e) {
     date: document.getElementById("date").value
   };
 
-  // ✅ Debug print to console
   console.log("Sending transaction to backend:", transaction);
 
-  // ✅ Send to backend using fetch
   try {
-    const response = await fetch("https://finance-buddy-backend.onrender.com/api/transaction", {
+    const response = await fetch("https://finance-buddy-backend.onrender.com/api/transaction", 
+      {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
+      headers: {"Content-Type": "application/json" },
       body: JSON.stringify(transaction)
     });
 
@@ -32,11 +24,10 @@ form.addEventListener("submit", async function (e) {
       alert(`❌ Failed to save: ${err.error || "Unknown error"}`);
       return;
     }
-
-    // ✅ Success
     alert("✅ Transaction added to MongoDB!");
     form.reset();
-  } catch (err) {
+  } 
+  catch (err) {
     alert("❌ Error connecting to backend.");
     console.error(err);
   }

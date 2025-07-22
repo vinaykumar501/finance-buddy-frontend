@@ -1,6 +1,5 @@
 const tbody = document.getElementById("allTransactionTable");
 
-// Store global data
 let transactions = [];
 let people = [];
 

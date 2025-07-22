@@ -82,5 +82,4 @@ async function deleteTxn(id) {
   }
 }
 
-// ✅ Call when page is ready
 document.addEventListener("DOMContentLoaded", loadData);

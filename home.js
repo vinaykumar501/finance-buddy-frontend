@@ -75,9 +75,7 @@ function updateDashboard(data) {
   cardContainer.innerHTML = "";
 
   // Show latest 5 transactions
- const recent = data.slice()
-  .sort((a, b) => new Date(b.date) - new Date(a.date))
-  .slice(0, 5);
+ const recent = data.slice(-5).reverse();
   recent.forEach(txn => {
     const person = people.find(p => p.id == txn.personId);
     const name = person ? person.name : "Unknown";

@@ -1,8 +1,7 @@
-// 👉 Global variables to store API data
+
 let transactions = [];
 let people = [];
 
-// 👉 DOM Elements
 const tbody = document.getElementById("recentTransactions");
 const borrowedEl = document.getElementById("totalBorrowed");
 const repaidEl = document.getElementById("totalRepaid");
@@ -10,11 +9,9 @@ const balanceEl = document.getElementById("totalBalance");
 const cardContainer = document.getElementById("topBorrowerCards");
 const notesBox = document.getElementById("notesBox");
 
-// ✅ Load saved note from localStorage
 const savedNote = localStorage.getItem("homeNote");
 if (savedNote) notesBox.value = savedNote;
 
-// ✅ Load data from backend (MongoDB via Express API)
 async function loadData() {
   try {
     const BASE_URL = "https://finance-buddy-backend.onrender.com";
@@ -27,23 +24,20 @@ async function loadData() {
     transactions = await txnRes.json();
     people = await peopleRes.json();
 
-    filterByRange("all"); // default filter
+    filterByRange("all"); 
   } catch (err) {
     alert("❌ Failed to load data from server");
     console.error(err);
   }
 }
 
-// ✅ Call this once on page load
 loadData();
 
-// 📅 Filter dropdown event
 document.getElementById("filterSelect").addEventListener("change", function () {
   const selected = this.value;
-  filterByRange(selected); // Apply filter based on selection
+  filterByRange(selected); 
 });
 
-// 📆 Filter transactions by date
 function filterByRange(range) {
   const now = new Date();
   let filtered = [];
@@ -62,19 +56,16 @@ function filterByRange(range) {
     const month = String(last.getMonth() + 1).padStart(2, '0');
     filtered = transactions.filter(txn => txn.date.startsWith(`${year}-${month}`));
   } else {
-    filtered = transactions; // 'all' case
+    filtered = transactions;
   }
 
   updateDashboard(filtered);
 }
 
-// 📊 Update Dashboard UI
 function updateDashboard(data) {
-  // Clear previous content
   tbody.innerHTML = "";
   cardContainer.innerHTML = "";
 
-  // Show latest 5 transactions
  const recent = data.slice(-5).reverse();
   recent.forEach(txn => {
     const person = people.find(p => p.id == txn.personId);
@@ -91,7 +82,6 @@ function updateDashboard(data) {
     tbody.appendChild(row);
   });
 
-  // Totals
   let totalBorrowed = 0, totalRepaid = 0;
   data.forEach(txn => {
     if (txn.type === "give") totalBorrowed += txn.amount;
@@ -102,7 +92,6 @@ function updateDashboard(data) {
   repaidEl.textContent = `₹${totalRepaid.toFixed(2)}`;
   balanceEl.textContent = `₹${(totalRepaid - totalBorrowed).toFixed(2)}`;
 
-  // 🧮 Top 3 Borrowers
   const borrowerMap = {};
   data.forEach(txn => {
     const id = txn.personId;
@@ -144,7 +133,6 @@ function updateDashboard(data) {
   });
 }
 
-// ✅ Notes Feature (local-only)
 function saveNote() {
   const note = notesBox.value.trim();
   if (note) {
